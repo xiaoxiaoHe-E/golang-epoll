@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net"
-	"net/http"
 	"reflect"
 	"sync"
 	"syscall"
@@ -107,11 +106,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	go func() {
-		if err := http.ListenAndServe(":6060", nil); err != nil {
-			log.Fatalf("pprof failed: %v", err)
-		}
-	}()
+
 	epoller, err = MkEpoll()
 	if err != nil {
 		panic(err)
